@@ -10,7 +10,16 @@ I will then traverse the root, its children and one of its grandchildren (here I
 compare the two)
 */
 
+// class Heap {
+//   constructor(list) {
+
+//   }
+// }
 const main = list => {
+  if (list.length < 4) {
+    return list
+  }
+
   let nodeOutOfPlace = false
 
   const heapify = i => {
@@ -25,6 +34,7 @@ const main = list => {
     // check if parent is less than or equal to children
     if (child1 >= list[i] || child2 >= list[i]) {
       nodeOutOfPlace = true
+
       if (child1 >= child2) {
         // swap child1 with parent
         const temp = list[i]
@@ -54,9 +64,13 @@ const main = list => {
     list[0] = list[list.length - 1]
     list.pop()
 
-    for (let i = 0; i < Math.floor(list.length / 2) - 1; i++) {
-      heapify(i)
-    }
+    do {
+      nodeOutOfPlace = false
+      for (let i = 0; i < Math.floor(list.length / 2); i++) {
+        heapify(i)
+      }
+    } while (nodeOutOfPlace)
+
     return removedElement
   }
 
@@ -65,8 +79,8 @@ const main = list => {
   for (let i = 0; i < 4; i++) {
     fourthGreatest.push(remove())
   }
-  console.log(list)
+
   return fourthGreatest
 }
 
-console.log(main([40, 60, 10, 20, 50, 30]))
+module.exports = main
