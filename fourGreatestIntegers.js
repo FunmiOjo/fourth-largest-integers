@@ -70,6 +70,8 @@ class Heap {
     return removedElement
   }
 }
+
+// builds heap from list and returns four largest integers removed from heap
 const getFourthLargestIntegers = list => {
   if (list.length < 4) {
     return list
